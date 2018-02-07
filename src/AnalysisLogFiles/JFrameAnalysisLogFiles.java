@@ -138,11 +138,14 @@ public class JFrameAnalysisLogFiles extends javax.swing.JFrame {
         // TODO add your handling code here:
         
        FilesList newFilesList = new FilesList();
-       File newFile = newFilesList.getFolders(this.jTextHostName.getText());
+       //File newFile = newFilesList.getLastFile(this.jTextHostName.getText());
+       
+       File[] files = newFilesList.getFileList(this.jTextHostName.getText());
+       
         try {
-            if(newFile!=null){
+            if(files!=null){
                 
-                this.JTextAlerts.setText("Procesando el archivo: " + newFile.getName().toString());
+                this.JTextAlerts.setText("Procesando el archivos");
                 
             }else{
                 
@@ -155,7 +158,7 @@ public class JFrameAnalysisLogFiles extends javax.swing.JFrame {
         }
         
         try {
-            this.JTextAlerts.setText(ToolsFile.lecturaArchivo(newFile));
+            this.JTextAlerts.setText(ToolsFile.lecturaArchivos(files));
         } catch (IOException ex) {
             Logger.getLogger(JFrameAnalysisLogFiles.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -19,27 +19,20 @@ public class FilesList {
     String sDirectorio;
     File f;
     File lastFile;
+    File[] files;
     
     
     public FilesList(){
         
         this.today = new Date();
         this.sDirectorio = null;
-        lastFile = null;
+        this.lastFile = null;
+        this.files = null;
         
         
     }
     
     public File[] getFileList(String hostName){
-        
-        File[] files = null;
-        
-        
-        return files;
-    }
-    
-    
-    public File getFolders(String hostName){
         
         this.today = new Date();
         
@@ -51,9 +44,33 @@ public class FilesList {
         System.out.println(mes.format(today));
         System.out.println(ano.format(today));
         
-        this.sDirectorio = "\\\\" + hostName + "\\Data\\Workstation\\Logs\\" + ano.format(today) + "\\" + mes.format(today) + "\\" + dia.format(today) + "\\";
+        this.sDirectorio = "\\\\" + hostName + "\\peliculas\\Data\\Workstation\\Logs\\" + ano.format(today) + "\\" + mes.format(today) + "\\" + dia.format(today) + "\\";
 
-        //this.sDirectorio = "D:\\test\\" + ano.format(today) + "\\" + mes.format(today) + "\\" + dia.format(today) + "\\";
+        System.out.println("La URL del directorio de archivos es: " + sDirectorio);
+        
+        File f = new File(sDirectorio);
+        
+        File[] files = f.listFiles();
+        
+        
+        return files;
+    }
+    
+    
+    public File getLastFile(String hostName){
+        
+        this.today = new Date();
+        
+        SimpleDateFormat dia = new SimpleDateFormat("dd");
+        SimpleDateFormat mes = new SimpleDateFormat("MM");
+        SimpleDateFormat ano = new SimpleDateFormat("yyyy");
+        
+        System.out.println(dia.format(today));
+        System.out.println(mes.format(today));
+        System.out.println(ano.format(today));
+        
+        this.sDirectorio = "\\\\" + hostName + "\\peliculas\\Data\\Workstation\\Logs\\" + ano.format(today) + "\\" + mes.format(today) + "\\" + dia.format(today) + "\\";
+
         System.out.println("La URL del directorio de archivos es: " + sDirectorio);
         
         File f = new File(sDirectorio);

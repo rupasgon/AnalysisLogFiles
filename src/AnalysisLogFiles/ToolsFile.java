@@ -29,11 +29,11 @@ public class ToolsFile {
         
         while(b.readLine()!=null){
             
-            cadena = b.readLine() + "\n";
+            cadena = b.readLine();
             
-            if(/*cadena.indexOf("| x |")> -1 ||*/ cadena.indexOf("| ! |") > -1 /*|| cadena.indexOf("Error")> -1*/){
+            if(/*cadena.indexOf("| x |")> -1 ||*/ cadena.indexOf("| x |") > -1 /*|| cadena.indexOf("Error")> -1*/){
                 
-                sb.append(cadena);
+                sb.append(cadena + "\n");
                 
             }
             
@@ -44,6 +44,41 @@ public class ToolsFile {
         
        f.close();
        return sb.toString(); 
+    }
+    
+    public static String lecturaArchivos(File[] files) throws FileNotFoundException,IOException{
+        
+        String cadena = null;
+        StringBuilder sb = new StringBuilder();
+        
+        for (int n=0; n < files.length; n++){
+            
+            sb.append("\n");
+            sb.append("Archivo: " + files[n].getName() + "\n");
+            sb.append("---------------------------------------------------------------------\n");
+            sb.append("---------------------------------------------------------------------\n");
+            FileReader f = new FileReader(files[n]);
+            BufferedReader b = new BufferedReader(f);
+            while (b.readLine()!=null){
+                
+                cadena = b.readLine();
+                
+                if(cadena.indexOf("| x |") > -1){
+                    
+                    sb.append(cadena + "\n");
+                    
+                }
+                
+            }
+            
+            b.close();
+            
+            
+            
+        }
+        
+        return sb.toString();
+        
     }
     
     
